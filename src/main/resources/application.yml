@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: TestTask1
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://postgres1:${POSTGRESQL_SERVER_PORT}/${POSTGRESQL_DATABASE}
+    username: ${POSTGRESQL_USERNAME}
+    password: ${POSTGRESQL_PASSWORD}
+
+  jpa:
+    database: postgresql
+    show-sql: true
+
+  data:
+    jdbc:
+      dialect: postgresql
+
+server:
+  port: 8080
