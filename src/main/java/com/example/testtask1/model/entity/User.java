@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "#{@environment.getProperty('spring.datasource.user.table.name')}")
+@Table(name = "users")
 @Data
 public class User {
     @Id
@@ -15,4 +15,12 @@ public class User {
     private String email;
     @Column(name = "password")
     private String password;
+
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
+    public User() {
+    }
 }

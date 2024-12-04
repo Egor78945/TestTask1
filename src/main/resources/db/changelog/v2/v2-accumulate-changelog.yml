@@ -1,4 +1,4 @@
 databaseChangeLog:
   - include:
-      file: ./v2-create-sensors-table.yml
+      file: ./v2-create-sensor-table-changelog.yml
       relativeToChangelogFile: true

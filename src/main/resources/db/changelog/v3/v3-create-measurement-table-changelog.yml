@@ -1,0 +1,39 @@
+databaseChangeLog:
+  - changeSet:
+      id: v3-1
+      author: ${CHANGELOG_AUTHOR}
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: ${MEASUREMENT_TABLE_NAME}
+      changes:
+        - createTable:
+            tableName: ${MEASUREMENT_TABLE_NAME}
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    unique: true
+                    nullable: false
+                  autoIncrement: true
+              - column:
+                  name: sensor_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: measurements-sensors-fk
+                    referencedTableName: ${SENSOR_TABLE_NAME}
+                    referencedColumnNames: id
+                    nullable: false
+              - column:
+                  name: value
+                  type: decimal
+                  constraints:
+                    nullable: false
+              - column:
+                  name: raining
+                  type: boolean
+                  constraints:
+                    nullable: false

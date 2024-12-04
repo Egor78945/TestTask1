@@ -4,15 +4,17 @@ spring:
 
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://postgres1:${POSTGRESQL_SERVER_PORT}/${POSTGRESQL_DATABASE}
+    url: jdbc:postgresql://postgres:${POSTGRESQL_SERVER_PORT}/${POSTGRESQL_DATABASE}
     username: ${POSTGRESQL_USERNAME}
     password: ${POSTGRESQL_PASSWORD}
     user:
       table: ${USER_TABLE_NAME}
     sensor:
       table: ${SENSOR_TABLE_NAME}
-    measurements:
-      table: ${MEASUREMENTS_TABLE_NAME}
+    measurement:
+      table: ${MEASUREMENT_TABLE_NAME}
+    role:
+      table: ${ROLE_TABLE_NAME}
 
 
   jpa:
@@ -31,4 +33,4 @@ jwt:
   lifetime: ${JWT_LIFETIME}
 
 server:
-  port: 8080
+  port: ${SERVER_PORT}

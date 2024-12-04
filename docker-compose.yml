@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+  app:
+    container_name: app
+    build: .
+    environment:
+      - POSTGRESQL_SERVER_PORT=${POSTGRESQL_SERVER_PORT}
+      - POSTGRESQL_USERNAME=${POSTGRESQL_USERNAME}
+      - POSTGRESQL_PASSWORD=${POSTGRESQL_PASSWORD}
+      - POSTGRESQL_DATABASE=${POSTGRESQL_DATABASE}
+      - USER_TABLE_NAME=${USER_TABLE_NAME}
+      - SENSOR_TABLE_NAME=${SENSOR_TABLE_NAME}
+      - MEASUREMENT_TABLE_NAME=${MEASUREMENT_TABLE_NAME}
+      - ROLE_TABLE_NAME=${ROLE_TABLE_NAME}
+      - SERVER_PORT=${SERVER_PORT}
+      - CHANGELOG_AUTHOR=${CHANGELOG_AUTHOR}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_LIFETIME=${JWT_LIFETIME}
+    depends_on:
+      - postgres
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+
+  postgres:
+    container_name: postgres
+    image: postgres
+    environment:
+      POSTGRES_DB: ${POSTGRESQL_DATABASE}
+      POSTGRES_USER: ${POSTGRESQL_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRESQL_PASSWORD}
+    ports:
+      - ${POSTGRESQL_SERVER_PORT}:${POSTGRESQL_SERVER_PORT}

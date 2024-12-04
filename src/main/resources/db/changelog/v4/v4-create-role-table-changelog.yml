@@ -1,15 +1,15 @@
 databaseChangeLog:
   - changeSet:
-      id: v3-1
+      id: v4-1
       author: ${CHANGELOG_AUTHOR}
       preConditions:
         - onFail: MARK_RAN
         - not:
             tableExists:
-              tableName: ${MEASUREMENTS_TABLE_NAME}
+              tableName: ${ROLE_TABLE_NAME}
       changes:
         - createTable:
-            tableName: ${MEASUREMENTS_TABLE_NAME}
+            tableName: ${ROLE_TABLE_NAME}
             columns:
               - column:
                   name: id
@@ -20,20 +20,14 @@ databaseChangeLog:
                     nullable: false
                   autoIncrement: true
               - column:
-                  name: sensor_id
+                  name: user_id
                   type: bigint
                   constraints:
-                    foreignKeyName: measurements-sensors-fk
-                    referencedTableName: ${SENSORS_TABLE_NAME}
+                    foreignKeyName: roles-users-fk
+                    referencedTableName: ${USER_TABLE_NAME}
                     referencedColumnNames: id
-                    nullable: false
               - column:
-                  name: value
-                  type: decimal
-                  constraints:
-                    nullable: false
-              - column:
-                  name: raining
-                  type: boolean
+                  name: role
+                  type: varchar(30)
                   constraints:
                     nullable: false

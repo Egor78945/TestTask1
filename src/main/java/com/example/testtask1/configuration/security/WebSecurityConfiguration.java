@@ -1,5 +1,7 @@
 package com.example.testtask1.configuration.security;
 
+import com.example.testtask1.service.user.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -18,11 +20,13 @@ import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class WebSecurityConfiguration {
+    private final UserService userService;
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider(PasswordEncoder passwordEncoder) {
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
-//        auth.setUserDetailsService(userService);
+        auth.setUserDetailsService(userService);
         auth.setPasswordEncoder(passwordEncoder);
         return auth;
     }

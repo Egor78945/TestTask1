@@ -1,4 +1,4 @@
 databaseChangeLog:
   - include:
-      file: ./v3-create-measurement-table-changelog.yml
+      file: ./v4-create-role-table-changelog.yml
       relativeToChangelogFile: true

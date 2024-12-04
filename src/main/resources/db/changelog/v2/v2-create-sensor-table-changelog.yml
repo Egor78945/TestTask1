@@ -6,10 +6,10 @@ databaseChangeLog:
         - onFail: MARK_RAN
         - not:
             tableExists:
-              tableName: ${SENSORS_TABLE_NAME}
+              tableName: ${SENSOR_TABLE_NAME}
       changes:
         - createTable:
-            tableName: ${SENSORS_TABLE_NAME}
+            tableName: ${SENSOR_TABLE_NAME}
             columns:
               - column:
                   name: id
