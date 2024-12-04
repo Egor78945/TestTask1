@@ -1,0 +1,4 @@
+databaseChangeLog:
+  - include:
+      file: ./v3-create-measurements-table-changelog.yml
+      relativeToChangelogFile: true

@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: v1-1
+      author: ${CHANGELOG_AUTHOR}
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: ${USER_TABLE_NAME}
+      changes:
+        - createTable:
+            tableName: ${USER_TABLE_NAME}
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    unique: true
+                    nullable: false
+                  autoIncrement: true
+              - column:
+                  name: email
+                  type: varchar(100)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: password
+                  type: varchar(300)
+                  constraints:
+                    unique: false
+                    nullable: true
+
+
