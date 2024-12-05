@@ -3,7 +3,7 @@ package com.example.testtask1.model.dto;
 import lombok.Data;
 
 @Data
-public class AuthenticationRequestModel {
+public class AuthenticationModel {
     private String email;
     private String password;
 }

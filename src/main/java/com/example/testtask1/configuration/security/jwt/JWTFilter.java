@@ -28,8 +28,7 @@ public class JWTFilter extends OncePerRequestFilter {
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             String jwt = authHeader.substring(7);
             String email = jwtConfiguration.getEmailFromToken(jwt);
-
-            if (userService.existsUserByEmail(email) && email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+            if (email != null && userService.existsUserByEmail(email) && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
                         email, null, jwtConfiguration.getRoleFromToken(jwt).stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList())
                 );

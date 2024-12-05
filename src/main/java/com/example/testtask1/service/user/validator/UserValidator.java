@@ -1,6 +1,6 @@
 package com.example.testtask1.service.user.validator;
 
-import com.example.testtask1.model.dto.AuthenticationRequestModel;
+import com.example.testtask1.model.dto.AuthenticationModel;
 
 public class UserValidator {
     public static boolean isValidEmail(String email) {
@@ -31,7 +31,7 @@ public class UserValidator {
         throw new RuntimeException("Password must to be greater 9 symbols and less than 31 symbols.");
     }
 
-    public static boolean isValidAuthenticationModel(AuthenticationRequestModel model) {
+    public static boolean isValidAuthenticationModel(AuthenticationModel model) {
         return isValidEmail(model.getEmail()) && isValidPassword(model.getPassword());
     }
 }

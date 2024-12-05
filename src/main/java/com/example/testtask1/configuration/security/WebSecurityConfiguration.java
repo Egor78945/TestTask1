@@ -1,5 +1,6 @@
 package com.example.testtask1.configuration.security;
 
+import com.example.testtask1.configuration.security.jwt.JWTFilter;
 import com.example.testtask1.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -17,12 +18,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class WebSecurityConfiguration {
     private final UserService userService;
+    private final JWTFilter jwtFilter;
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider(PasswordEncoder passwordEncoder) {
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
@@ -44,7 +47,9 @@ public class WebSecurityConfiguration {
                 .exceptionHandling(e -> e.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/auth").permitAll())
+                        .requestMatchers("/auth").permitAll()
+                        .anyRequest().fullyAuthenticated())
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .logout(LogoutConfigurer::permitAll);
         return http.build();
     }

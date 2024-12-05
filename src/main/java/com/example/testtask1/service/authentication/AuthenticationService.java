@@ -2,7 +2,7 @@ package com.example.testtask1.service.authentication;
 
 import com.example.testtask1.configuration.security.jwt.JWTConfiguration;
 import com.example.testtask1.enumeration.role.Roles;
-import com.example.testtask1.model.dto.AuthenticationRequestModel;
+import com.example.testtask1.model.dto.AuthenticationModel;
 import com.example.testtask1.model.entity.Role;
 import com.example.testtask1.model.entity.User;
 import com.example.testtask1.service.role.RoleService;
@@ -27,15 +27,15 @@ public class AuthenticationService {
     private final UserService userService;
     private final RoleService roleService;
 
-    public String authenticate(AuthenticationRequestModel requestModel) {
+    public String authenticate(AuthenticationModel requestModel) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(requestModel.getEmail(), requestModel.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         return jwtConfiguration.generateToken(authentication);
     }
 
-    public void register(AuthenticationRequestModel authenticationRequestModel) {
-        if(UserValidator.isValidAuthenticationModel(authenticationRequestModel)){
-            User user = new User(authenticationRequestModel.getEmail(), passwordEncoder.encode(authenticationRequestModel.getPassword()));
+    public void register(AuthenticationModel authenticationModel) {
+        if(UserValidator.isValidAuthenticationModel(authenticationModel)){
+            User user = new User(authenticationModel.getEmail(), passwordEncoder.encode(authenticationModel.getPassword()));
             user = userService.saveUser(user);
             List<Role> roles = List.of(new Role(user.getId(), Roles.DEFAULT.name()));
             roleService.save(roles);

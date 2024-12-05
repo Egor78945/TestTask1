@@ -1,6 +1,6 @@
 package com.example.testtask1.controller.authentication;
 
-import com.example.testtask1.model.dto.AuthenticationRequestModel;
+import com.example.testtask1.model.dto.AuthenticationModel;
 import com.example.testtask1.service.authentication.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -13,13 +13,13 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
     @GetMapping
-    public ResponseEntity<String> authenticate(@RequestBody AuthenticationRequestModel authenticationRequestModel) {
-        return ResponseEntity.ok(authenticationService.authenticate(authenticationRequestModel));
+    public ResponseEntity<String> authenticate(@RequestBody AuthenticationModel authenticationModel) {
+        return ResponseEntity.ok(authenticationService.authenticate(authenticationModel));
     }
 
     @PostMapping
-    public ResponseEntity<String> register(@RequestBody AuthenticationRequestModel authenticationRequestModel){
-        authenticationService.register(authenticationRequestModel);
+    public ResponseEntity<String> register(@RequestBody AuthenticationModel authenticationModel){
+        authenticationService.register(authenticationModel);
         return ResponseEntity.ok("User has been registered");
     }
 }
