@@ -2,6 +2,7 @@ package com.example.testtask1.service.role;
 
 import com.example.testtask1.model.entity.Role;
 import com.example.testtask1.repository.RoleRepository;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Tag(name = "Role Service", description = "Provides manipulations with user roles")
 public class RoleService {
     private final RoleRepository roleRepository;
 

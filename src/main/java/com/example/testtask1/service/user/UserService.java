@@ -6,6 +6,7 @@ import com.example.testtask1.model.security.UserDetailsImplementation;
 import com.example.testtask1.repository.RoleRepository;
 import com.example.testtask1.repository.UserRepository;
 import com.example.testtask1.service.role.RoleService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Tag(name = "User Service", description = "Provides manipulations with users")
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final RoleService roleService;

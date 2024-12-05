@@ -1,7 +1,9 @@
 package com.example.testtask1.service.user.validator;
 
 import com.example.testtask1.model.dto.AuthenticationModel;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
+@Tag(name = "User validator", description = "Provides validation of user data")
 public class UserValidator {
     public static boolean isValidEmail(String email) {
         if (email.length() <= 100 && email.length() >= 15) {

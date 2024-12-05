@@ -3,6 +3,7 @@ package com.example.testtask1.service.sensor;
 import com.example.testtask1.model.dto.SensorModel;
 import com.example.testtask1.model.entity.Sensor;
 import com.example.testtask1.repository.SensorRepository;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Tag(name = "Sensor Service", description = "Provides manipulations with sensors")
 public class SensorService {
     private final SensorRepository sensorRepository;
 

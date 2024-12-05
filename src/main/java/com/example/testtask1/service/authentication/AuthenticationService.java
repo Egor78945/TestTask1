@@ -8,6 +8,7 @@ import com.example.testtask1.model.entity.User;
 import com.example.testtask1.service.role.RoleService;
 import com.example.testtask1.service.user.UserService;
 import com.example.testtask1.service.user.validator.UserValidator;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,6 +21,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Tag(name = "Authentication Service", description = "Provides registration and authentication")
 public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final JWTConfiguration jwtConfiguration;
@@ -34,11 +36,15 @@ public class AuthenticationService {
     }
 
     public void register(AuthenticationModel authenticationModel) {
-        if(UserValidator.isValidAuthenticationModel(authenticationModel)){
-            User user = new User(authenticationModel.getEmail(), passwordEncoder.encode(authenticationModel.getPassword()));
-            user = userService.saveUser(user);
-            List<Role> roles = List.of(new Role(user.getId(), Roles.DEFAULT.name()));
-            roleService.save(roles);
+        if (UserValidator.isValidAuthenticationModel(authenticationModel)) {
+            if (!userService.existsUserByEmail(authenticationModel.getEmail())) {
+                User user = new User(authenticationModel.getEmail(), passwordEncoder.encode(authenticationModel.getPassword()));
+                user = userService.saveUser(user);
+                List<Role> roles = List.of(new Role(user.getId(), Roles.DEFAULT.name()));
+                roleService.save(roles);
+            } else {
+                throw new RuntimeException(String.format("User with email %s already exists.", authenticationModel.getEmail()));
+            }
         }
     }
 }
