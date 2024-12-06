@@ -34,31 +34,4 @@ public class MeasurementService {
     public int getRainingCount() {
         return measurementRepository.findRainingCount();
     }
-
-//    public void generateThousand() throws IOException, InterruptedException {
-//        sensorService.s
-//        Random random = new Random();
-//
-//        HttpClient httpClient = HttpClient.newHttpClient();
-//
-//        HttpRequest request = HttpRequest.newBuilder()
-//                .uri(URI.create("http://localhost:8080/sensors/registration"))
-//                .POST(HttpRequest.BodyPublishers.ofString(jsonMapper.writeValueAsString(sensor)))
-//                .build();
-//
-//        httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-//
-//        for (int i = 0; i < 1000; i++) {
-//            MeasurementModel measurementModel = new MeasurementModel();
-//            double value = random.nextDouble(-65.0, 50.0);
-//            boolean raining = random.nextBoolean();
-//            measurementModel.setValue(value);
-//            measurementModel.setRaining(raining);
-//            measurementModel.set
-//            request = HttpRequest.newBuilder()
-//                    .uri(URI.create("http://localhost:8080/measurements/add"))
-//                    .POST(HttpRequest.BodyPublishers.ofString(jsonMapper.writeValueAsString(m)))
-//                    .build();
-//        }
-//    }
 }
