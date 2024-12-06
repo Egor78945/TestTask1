@@ -2,7 +2,9 @@
 Инструкция по запуску:
 1) Запустить postgres-севрис в docker-compose.yml
 2) Запустить app-сервис в docker-compose.yml
+
 Инструкция по использованию:
+
 1. Authentication-API
    1) /auth - POST-запрос, выполняет регистрацию нового пользователя. Принимает JSON body:
       {
@@ -14,11 +16,13 @@
       "email":"email",
       "password":"password"
       }
+
 2. Sensor-API
    1) /sensors/registration - POST-запрос, выполняет регистрацию нового, ранее не зарегестрированного сенсора. Принимает JSON body:
       {
       "name":"sensorName"
       }
+
 3. Measurement-API
    1) /measurement/add - POST-запрос, выполняет привязку нового измерения к существующему сенсору. Принмает JSON body:
       {
