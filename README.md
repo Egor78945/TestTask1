@@ -24,7 +24,7 @@
       }
 
 3. Measurement-API
-   1) /measurement/add - POST-запрос, выполняет привязку нового измерения к существующему сенсору. Принмает JSON body:
+   1) /measurements/add - POST-запрос, выполняет привязку нового измерения к существующему сенсору. Принмает JSON body:
       {
       "value": 1.0,
       "raining": true,
